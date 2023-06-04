@@ -24,7 +24,7 @@ describe("Lottery Contract", () => {
   it("allows one account to enter", async () => {
     await lottery.methods
       .enter()
-      .send({ from: accounts[0], value: web3.utils.toWei("0,02", "ether") });
+      .send({ from: accounts[0], value: web3.utils.toWei("0.02", "ether") });
 
     const players = await lottery.methods.getPlayers().call({
       from: accounts[0],
@@ -37,15 +37,15 @@ describe("Lottery Contract", () => {
   it("allows multiples accounts to enter", async () => {
     await lottery.methods
       .enter()
-      .send({ from: accounts[0], value: web3.utils.toWei("0,02", "ether") });
+      .send({ from: accounts[0], value: web3.utils.toWei("0.02", "ether") });
 
     await lottery.methods
       .enter()
-      .send({ from: accounts[1], value: web3.utils.toWei("0,02", "ether") });
+      .send({ from: accounts[1], value: web3.utils.toWei("0.02", "ether") });
 
     await lottery.methods
       .enter()
-      .send({ from: accounts[2], value: web3.utils.toWei("0,02", "ether") });
+      .send({ from: accounts[2], value: web3.utils.toWei("0.02", "ether") });
 
     const players = await lottery.methods.getPlayers().call({
       from: accounts[0],
@@ -81,7 +81,7 @@ describe("Lottery Contract", () => {
   });
 
   it("sends money to the winner and resets the players array", async () => {
-    await lottery.enter().send({
+    await lottery.methods.enter().send({
       from: accounts[0],
       value: web3.utils.toWei("2", "ether"),
     });
